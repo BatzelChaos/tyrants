@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bwigmwscxt4a2"]
+
+[ext_resource type="Texture2D" uid="uid://d4assbc3jy4o0" path="res://assets/tilesets/biene1.png" id="1_0qkok"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvbda"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa1rg"]
+atlas = ExtResource("1_0qkok")
+region = Rect2(0, 0, 32, 32)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=981279839]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1601327660]
+scale = Vector2(1.6, 1.6)
+shape = SubResource("RectangleShape2D_tvbda")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2039278768]
+texture = SubResource("AtlasTexture_pa1rg")

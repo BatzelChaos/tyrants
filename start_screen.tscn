@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bvbttahyg5ll8"]
+
+[ext_resource type="Script" uid="uid://d0lepyp50k0lx" path="res://start_screen.gd" id="1_ncxyx"]
+[ext_resource type="Theme" uid="uid://buu70asntrspv" path="res://assets/resources/mainfont.tres" id="2_pevhg"]
+
+[node name="Control" type="Control" unique_id=24389811]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ncxyx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2063392528]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 429.0
+offset_right = 443.0
+offset_bottom = 623.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=2147293759]
+layout_mode = 2
+
+[node name="start_button" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1738585762]
+layout_mode = 2
+theme = ExtResource("2_pevhg")
+text = "Start"
+
+[node name="settings_button" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1612353487]
+layout_mode = 2
+theme = ExtResource("2_pevhg")
+text = "Settings"
+
+[node name="exit_button" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=2115602203]
+layout_mode = 2
+theme = ExtResource("2_pevhg")
+text = "Exit
+"

@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://buu70asntrspv"]
+
+[ext_resource type="FontFile" uid="uid://ccf84hc1oaq8i" path="res://assets/resources/fonts/HomeVideo-Regular.ttf" id="1_snqxn"]
+
+[resource]
+default_font = ExtResource("1_snqxn")
+default_font_size = 60
