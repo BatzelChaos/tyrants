@@ -63,7 +63,10 @@ layout_mode = 2
 text = "Volume"
 
 [node name="VolumeSlider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/VolumeRow" unique_id=2102828487]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+max_value = 1.0
+step = 0.01
 
 [node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=1315895646]
 layout_mode = 2

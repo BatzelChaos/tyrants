@@ -37,8 +37,12 @@ func _on_volume_changed(value: float) -> void:
 	# linear_to_db(0.0) is -inf, so clamp near-silence to a very low value
 	var db := linear_to_db(maxf(value, 0.0001))
 	AudioServer.set_bus_volume_db(bus, db)
-	volume_label.text = "Volume: %d%%" % roundi(value * 100)
-
+	if value == 1:
+		volume_label.text = "Volume: %d%%" % roundi(value * 100)
+	elif 0.1 <= value && value < 1:
+		volume_label.text = "Volume:  %d%%" % roundi(value * 100)
+	elif value < 0.1:
+		volume_label.text = "Volume:   %d%%" % roundi(value * 100)
 
 func _on_back_pressed() -> void:
 	_save_settings()
