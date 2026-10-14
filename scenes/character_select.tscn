@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://d3insn878f6vp"]
+
+[ext_resource type="Script" uid="uid://iu71my40fpsv" path="res://scenes/character_select.gd" id="1_jgus3"]
+[ext_resource type="Theme" uid="uid://buu70asntrspv" path="res://assets/resources/mainscreen.tres" id="2_bow2h"]
+
+[node name="Control" type="Control" unique_id=1432519580]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_bow2h")
+script = ExtResource("1_jgus3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=748589383]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 139.0
+offset_right = 956.0
+offset_bottom = 201.0
+theme = ExtResource("2_bow2h")
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1937603252]
+layout_mode = 2
+alignment = 1
+
+[node name="kaniel" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1859606682]
+layout_mode = 2
+theme = ExtResource("2_bow2h")
+text = "KANIEL"
+
+[node name="biene" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1271791186]
+layout_mode = 2
+theme = ExtResource("2_bow2h")
+text = "BIENE"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=2094970246]
+layout_mode = 2
+alignment = 1
+
+[node name="avanch" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=1349916338]
+layout_mode = 2
+theme = ExtResource("2_bow2h")
+text = "AVANCH"
+
+[node name="cro" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=103242380]
+layout_mode = 2
+theme = ExtResource("2_bow2h")
+text = "CRO"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1693259661]
+layout_mode = 0
+offset_left = 484.0
+offset_top = 645.0
+offset_right = 672.0
+offset_bottom = 707.0
+alignment = 1
+
+[node name="start" type="Button" parent="VBoxContainer2" unique_id=1848698638]
+layout_mode = 2
+text = "START"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/kaniel" to="." method="_on_kaniel_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/biene" to="." method="_on_biene_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/avanch" to="." method="_on_avanch_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/cro" to="." method="_on_cro_pressed"]
+[connection signal="pressed" from="VBoxContainer2/start" to="." method="_on_start_pressed"]

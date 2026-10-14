@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://boq5awwen2k8l"]
+
+[ext_resource type="Theme" uid="uid://buu70asntrspv" path="res://assets/resources/mainscreen.tres" id="1_5p8wc"]
+[ext_resource type="Script" uid="uid://n3so5xmf6tl6" path="res://scenes/settings.gd" id="2_r6d6q"]
+
+[node name="Settings" type="Control" unique_id=1645973225]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_5p8wc")
+script = ExtResource("2_r6d6q")
+
+[node name="Panel" type="Panel" parent="." unique_id=2021082381]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -360.0
+offset_right = 600.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1127698360]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=1436722330]
+layout_mode = 2
+
+[node name="SettingsLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=644153181]
+layout_mode = 2
+text = "Settings"
+
+[node name="FullscreenCheck" type="CheckButton" parent="Panel/MarginContainer/VBoxContainer" unique_id=1657947350]
+layout_mode = 2
+text = "FullScreen"
+
+[node name="VSyncCheck" type="CheckButton" parent="Panel/MarginContainer/VBoxContainer" unique_id=1246778191]
+layout_mode = 2
+text = "V-sync"
+
+[node name="VolumeRow" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=362446569]
+layout_mode = 2
+
+[node name="VolumeLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/VolumeRow" unique_id=947191526]
+layout_mode = 2
+text = "Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/VolumeRow" unique_id=2102828487]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=1315895646]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=462167859]
+layout_mode = 2
+text = "BACK"

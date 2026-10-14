@@ -12,12 +12,24 @@ func _ready() -> void:
 
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://game.tscn")
+	get_tree().change_scene_to_file("res://scenes/character_select.tscn")
 
 
 func _on_settings_pressed() -> void:
-	get_tree().change_scene_to_file("res://settings.tscn")
+	get_tree().change_scene_to_file("res://scenes/settings.tscn")
 
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_start_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_settings_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_exit_button_pressed() -> void:
+	pass # Replace with function body.
