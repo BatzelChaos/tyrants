@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bvbttahyg5ll8"]
 
-[ext_resource type="Script" uid="uid://d0lepyp50k0lx" path="res://start_screen.gd" id="1_ncxyx"]
-[ext_resource type="Theme" uid="uid://buu70asntrspv" path="res://assets/resources/mainfont.tres" id="2_pevhg"]
+[ext_resource type="Script" uid="uid://d0lepyp50k0lx" path="res://scenes/start_screen.gd" id="1_ncxyx"]
+[ext_resource type="Theme" uid="uid://buu70asntrspv" path="res://assets/resources/mainscreen.tres" id="2_pevhg"]
 
 [node name="Control" type="Control" unique_id=24389811]
 layout_mode = 3
@@ -37,3 +37,7 @@ layout_mode = 2
 theme = ExtResource("2_pevhg")
 text = "Exit
 "
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/settings_button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/exit_button" to="." method="_on_exit_button_pressed"]
