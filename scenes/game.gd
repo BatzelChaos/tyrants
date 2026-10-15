@@ -10,15 +10,12 @@ var player: CharacterBody2D
 
 
 func _ready() -> void:
-	var character_scene: PackedScene = GameManager.selected_character
-
-	if character_scene == null:
-		push_warning("No character selected!")
-		return
-
-	player = character_scene.instantiate() as CharacterBody2D
-	characters.add_child(player)
-	player.global_position = spawn_point.global_position
+	var player: CharacterBody2D = GameManager.get_character_scene().instantiate()
+	add_child(player)
+	if GameManager.pending_save_data.is_empty():
+		player.global_position = spawn_point.global_position
+	else:
+		player.load_save_data(GameManager.pending_save_data)
 
 	load_map(GameManager.current_map_path)
 

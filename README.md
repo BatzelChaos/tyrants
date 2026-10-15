@@ -1,0 +1,2 @@
+- add a movement buffer to the character movement
+- add a warning for starting a new game

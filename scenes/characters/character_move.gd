@@ -16,6 +16,8 @@ var target_position := Vector2.ZERO
 var is_moving := false
 var _anchored := false
 
+func _ready() -> void:
+	add_to_group("player")
 
 func _physics_process(delta: float) -> void:
 	if not _anchored:
@@ -127,31 +129,30 @@ func stop_walk_animation() -> void:
 			animated_sprite.play("idle_side")
 			
 func get_save_data() -> Dictionary:
+	var pos := cell_position(grid_cell) if is_moving else global_position
 	return {
-		"position_x": global_position.x,
-		"position_y": global_position.y,
+		"position_x": pos.x,
+		"position_y": pos.y,
 		"health": health,
 		"grid_cell_x": grid_cell.x,
 		"grid_cell_y": grid_cell.y,
 		"last_direction_x": last_direction.x,
-		"last_direction_y": last_direction.y
+		"last_direction_y": last_direction.y,
 	}
 
 
 func load_save_data(data: Dictionary) -> void:
 	health = int(data.get("health", max_health))
 
-	global_position = Vector2(
-		float(data.get("position_x", global_position.x)),
-		float(data.get("position_y", global_position.y))
-	)
-
-	grid_origin = global_position - Vector2(grid_cell) * TILE_SIZE
-
 	grid_cell = Vector2i(
 		int(data.get("grid_cell_x", 0)),
 		int(data.get("grid_cell_y", 0))
 	)
+	global_position = Vector2(
+		float(data.get("position_x", global_position.x)),
+		float(data.get("position_y", global_position.y))
+	)
+	grid_origin = global_position - Vector2(grid_cell) * TILE_SIZE  # AFTER grid_cell
 
 	last_direction = Vector2i(
 		int(data.get("last_direction_x", 0)),
@@ -162,3 +163,4 @@ func load_save_data(data: Dictionary) -> void:
 	move_direction = Vector2i.ZERO
 	is_moving = false
 	_anchored = true
+	stop_walk_animation()
