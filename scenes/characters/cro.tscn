@@ -1,3 +1,57 @@
 [gd_scene format=3 uid="uid://dyiv0wekmvood"]
 
-[node name="Cro" type="Node2D" unique_id=86237009]
+[ext_resource type="Script" uid="uid://ccmrgmk1g15rw" path="res://scenes/characters/character_move.gd" id="1_bh4wj"]
+[ext_resource type="Texture2D" uid="uid://d4assbc3jy4o0" path="res://assets/tilesets/biene1.png" id="1_rth36"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bh4wj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6uqj"]
+atlas = ExtResource("1_rth36")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l6b71"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"idle_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6uqj")
+}],
+"loop": 1,
+"name": &"idle_up",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"walk_side",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[node name="Cro" type="CharacterBody2D" unique_id=519310253]
+script = ExtResource("1_bh4wj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1071753007]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_bh4wj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=519664704]
+sprite_frames = SubResource("SpriteFrames_l6b71")
+animation = &"idle_up"

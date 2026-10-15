@@ -3,6 +3,8 @@ extends CharacterBody2D
 const TILE_SIZE := 32.0
 @export var move_speed: float = 100.0
 @export_range(1.0, 4.0, 0.1) var run_multiplier: float = 1.6  # Shift sprint speed
+@export var max_health: int = 100
+var health: int = 100
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 var last_direction := Vector2i.DOWN
@@ -123,3 +125,40 @@ func stop_walk_animation() -> void:
 			animated_sprite.play("idle_down")
 		Vector2i.LEFT, Vector2i.RIGHT:
 			animated_sprite.play("idle_side")
+			
+func get_save_data() -> Dictionary:
+	return {
+		"position_x": global_position.x,
+		"position_y": global_position.y,
+		"health": health,
+		"grid_cell_x": grid_cell.x,
+		"grid_cell_y": grid_cell.y,
+		"last_direction_x": last_direction.x,
+		"last_direction_y": last_direction.y
+	}
+
+
+func load_save_data(data: Dictionary) -> void:
+	health = int(data.get("health", max_health))
+
+	global_position = Vector2(
+		float(data.get("position_x", global_position.x)),
+		float(data.get("position_y", global_position.y))
+	)
+
+	grid_origin = global_position - Vector2(grid_cell) * TILE_SIZE
+
+	grid_cell = Vector2i(
+		int(data.get("grid_cell_x", 0)),
+		int(data.get("grid_cell_y", 0))
+	)
+
+	last_direction = Vector2i(
+		int(data.get("last_direction_x", 0)),
+		int(data.get("last_direction_y", 1))
+	)
+
+	target_position = global_position
+	move_direction = Vector2i.ZERO
+	is_moving = false
+	_anchored = true
