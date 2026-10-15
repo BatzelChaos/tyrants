@@ -10,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_pevhg")
 script = ExtResource("1_ncxyx")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2063392528]
@@ -25,7 +26,11 @@ layout_mode = 2
 [node name="start_button" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1738585762]
 layout_mode = 2
 theme = ExtResource("2_pevhg")
-text = "Start"
+text = "New Game"
+
+[node name="continue_button" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=735735802]
+layout_mode = 2
+text = "Continue"
 
 [node name="settings_button" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1612353487]
 layout_mode = 2

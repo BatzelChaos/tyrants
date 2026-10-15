@@ -3,17 +3,19 @@
 [ext_resource type="Script" uid="uid://fea4730eoqtm" path="res://scenes/game.gd" id="1_yqjtg"]
 [ext_resource type="Script" uid="uid://bta1dtxbw4yrg" path="res://scenes/characters/camera.gd" id="2_lnu2h"]
 [ext_resource type="Script" uid="uid://bhqfw46huqw0t" path="res://scenes/pause_menu.gd" id="2_yqjtg"]
+[ext_resource type="Theme" uid="uid://buu70asntrspv" path="res://assets/resources/mainscreen.tres" id="3_lbhrr"]
 
 [node name="Node2D" type="Node2D" unique_id=1398352174]
+position = Vector2(240, 144)
 script = ExtResource("1_yqjtg")
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=148691804]
-position = Vector2(240, 144)
 
 [node name="Characters" type="Node2D" parent="." unique_id=592862201]
-position = Vector2(240, 144)
+scale = Vector2(2.5, 2.5)
 
 [node name="Maps" type="Node2D" parent="." unique_id=951586328]
+position = Vector2(-240, -144)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=49662137]
 zoom = Vector2(2.5, 2.5)
@@ -21,6 +23,7 @@ position_smoothing_enabled = true
 script = ExtResource("2_lnu2h")
 
 [node name="HUD" type="Control" parent="Camera2D" unique_id=2132928356]
+z_index = 5
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -33,6 +36,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_lbhrr")
 
 [node name="PauseMenu" type="Control" parent="Camera2D/HUD" unique_id=1643336240]
 layout_mode = 1
