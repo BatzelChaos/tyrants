@@ -4,6 +4,8 @@ extends Node2D
 @onready var characters: Node2D = $Characters
 @onready var maps: Node2D = $Maps
 @onready var camera: Camera2D = $Camera2D
+@onready var enemy_spawner: Node2D = $EnemySpawner
+
 
 var current_map: Node2D
 var player: CharacterBody2D
@@ -44,5 +46,6 @@ func load_map(path: String) -> void:
 	var scene := load(path) as PackedScene
 	current_map = scene.instantiate() as Node2D
 	maps.add_child(current_map)
+	enemy_spawner.spawn_from(current_map)
 
 	GameManager.current_map_path = path

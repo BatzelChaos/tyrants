@@ -2,12 +2,10 @@ extends CharacterBody2D
 
 const TILE_SIZE := 32.0  # keep in sync with player.gd
 
-@export var grid_size := Vector2i(2, 2)
 @export var move_speed := 60.0
-@export var wanders := false                  # false = stationary obstacle/NPC
+@export var wanders := false                  # tick in the Inspector for movers only
 @export var idle_time := Vector2(1.0, 3.0)    # min/max seconds between steps
 
-var grid_origin := Vector2.ZERO
 var grid_cell := Vector2i.ZERO      # anchor = top-left occupied cell
 var target_position := Vector2.ZERO
 var is_moving := false
@@ -19,7 +17,7 @@ var _idle_timer := 1.0
 
 
 func _ready() -> void:
-	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING  # top-down, not platformer
+	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	add_to_group("enemies")
 	add_to_group("interactable")
 
@@ -27,10 +25,16 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not _anchored:
 		_anchored = true
-		grid_origin = global_position
-		grid_cell = Vector2i.ZERO
+		# Centered 64x64 sprite: snap the footprint center to a tile crossing.
+		var top_left := global_position - Vector2.ONE * TILE_SIZE
+		grid_cell = Vector2i((top_left / TILE_SIZE).floor())
+		global_position = cell_position(grid_cell)
 		target_position = global_position
 		_idle_timer = randf_range(idle_time.x, idle_time.y)
+
+	# Stationary: aligned on spawn, then completely inert.
+	if not wanders:
+		return
 
 	var budget := move_speed * delta
 	while budget > 0.0:
@@ -50,7 +54,6 @@ func _physics_process(delta: float) -> void:
 				global_position.direction_to(target_position) * budget
 			)
 			if collision:
-				# Blocked mid-step: snap back to the anchor cell.
 				var collider := collision.get_collider()
 				if collider is Node and collider.is_in_group("player"):
 					interact(collider)
@@ -80,24 +83,22 @@ func _next_direction(delta: float) -> Vector2i:
 
 
 func cell_position(cell: Vector2i) -> Vector2:
-	return grid_origin + Vector2(cell) * TILE_SIZE
+	# Node origin = center of the 2x2 block (a tile crossing).
+	return (Vector2(cell) + Vector2.ONE) * TILE_SIZE
 
-
-# --- Interaction contract ---------------------------------------------------
 
 func occupies(cell: Vector2i) -> bool:
-	return cell.x >= grid_cell.x and cell.x < grid_cell.x + grid_size.x \
-		and cell.y >= grid_cell.y and cell.y < grid_cell.y + grid_size.y
+	return cell.x >= grid_cell.x and cell.x < grid_cell.x + 2 \
+		and cell.y >= grid_cell.y and cell.y < grid_cell.y + 2
 
 
 func get_occupied_cells() -> Array[Vector2i]:
 	var cells: Array[Vector2i] = []
-	for y in grid_size.y:
-		for x in grid_size.x:
+	for y in 2:
+		for x in 2:
 			cells.append(grid_cell + Vector2i(x, y))
 	return cells
 
 
 func interact(player: Node) -> void:
 	print("%s interacted with %s" % [player.name, name])
-	# Dialogue, shop, combat trigger — whatever this thing does goes here.
