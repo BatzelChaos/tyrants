@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://d21nhwa15mksj"]
 
 [ext_resource type="Script" uid="uid://fea4730eoqtm" path="res://scenes/game.gd" id="1_yqjtg"]
+[ext_resource type="Script" uid="uid://dlhaul0dokjav" path="res://scenes/enemy_spawner.gd" id="2_iywne"]
 [ext_resource type="Script" uid="uid://bta1dtxbw4yrg" path="res://scenes/characters/camera.gd" id="2_lnu2h"]
 [ext_resource type="Script" uid="uid://bhqfw46huqw0t" path="res://scenes/pause_menu.gd" id="2_yqjtg"]
 [ext_resource type="Theme" uid="uid://buu70asntrspv" path="res://assets/resources/mainscreen.tres" id="3_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://cf3urwquvdl33" path="res://scenes/npcs/dragon_1.tscn" id="3_p57ef"]
 
 [node name="Node2D" type="Node2D" unique_id=1398352174]
 position = Vector2(240, 144)
@@ -16,6 +18,11 @@ scale = Vector2(2.5, 2.5)
 
 [node name="Maps" type="Node2D" parent="." unique_id=951586328]
 position = Vector2(-240, -144)
+
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=2138235584]
+script = ExtResource("2_iywne")
+enemy_scene = ExtResource("3_p57ef")
+cells = Array[Vector2i]([Vector2i(10, 10)])
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=49662137]
 zoom = Vector2(2.5, 2.5)
