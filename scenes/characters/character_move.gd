@@ -5,6 +5,7 @@ const TILE_SIZE := 32.0
 @export_range(1.0, 4.0, 0.1) var run_multiplier: float = 1.6  # Shift sprint speed
 @export var max_health: int = 100
 var health: int = 100
+var _bump_armed := true  # with the other vars
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 var last_direction := Vector2i.DOWN
@@ -36,6 +37,7 @@ func _physics_process(delta: float) -> void:
 			var dir := _read_input_direction()
 			if dir == Vector2i.ZERO:
 				# Input released: this is a real stop.
+				_bump_armed = true
 				stop_walk_animation()
 				break
 			move_direction = dir
@@ -52,6 +54,7 @@ func _physics_process(delta: float) -> void:
 			)
 			if collision:
 				# Blocked: return to the cell we came from.
+				_try_bump_interact(collision)
 				global_position = cell_position(grid_cell)
 				target_position = global_position
 				move_direction = Vector2i.ZERO
@@ -65,6 +68,7 @@ func _physics_process(delta: float) -> void:
 			# with the leftover budget.
 			global_position = target_position
 			grid_cell += move_direction
+			_bump_armed = true
 			move_direction = Vector2i.ZERO
 			is_moving = false
 			velocity = Vector2.ZERO
@@ -164,3 +168,22 @@ func load_save_data(data: Dictionary) -> void:
 	is_moving = false
 	_anchored = true
 	stop_walk_animation()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		_try_interact()
+
+func _try_interact() -> void:
+	var facing_cell := grid_cell + last_direction
+	for node in get_tree().get_nodes_in_group("interactable"):
+		if node.has_method("occupies") and node.occupies(facing_cell):
+			node.interact(self)
+			return
+			
+func _try_bump_interact(collision: KinematicCollision2D) -> void:
+	if not _bump_armed:
+		return
+	var target := collision.get_collider()
+	if target is Node and target.is_in_group("interactable") and target.has_method("interact"):
+		_bump_armed = false
+		target.interact(self)

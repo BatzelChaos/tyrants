@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cf3urwquvdl33"]
+
+[ext_resource type="Texture2D" uid="uid://cx3oajj6xgs0o" path="res://assets/tilesets/enemy1.png" id="1_ejdbk"]
+[ext_resource type="Script" uid="uid://cmnribmk08lr4" path="res://scenes/npcs/big_enemy.gd" id="1_wtrut"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_blx5w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtrut"]
+atlas = ExtResource("1_ejdbk")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pa1rg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtrut")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Dragon1" type="CharacterBody2D" unique_id=630307457]
+script = ExtResource("1_wtrut")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1453565954]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_blx5w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2116283580]
+sprite_frames = SubResource("SpriteFrames_pa1rg")
