@@ -15,77 +15,82 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_rca61")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI" unique_id=158926191]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI" unique_id=223131401]
 layout_mode = 1
-offset_right = 180.0
-offset_bottom = 54.0
-theme_override_constants/margin_left = 40
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -533.0
+offset_right = 533.0
+offset_bottom = 162.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HBoxContainer" unique_id=158926191]
+layout_mode = 2
+theme_override_constants/margin_left = 200
 theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 40
 
-[node name="Panel" type="Panel" parent="UI/MarginContainer" unique_id=553320368]
+[node name="Panel" type="Panel" parent="UI/HBoxContainer/MarginContainer" unique_id=553320368]
+custom_maximum_size = Vector2(-1, 80)
 layout_mode = 2
 
-[node name="BattleLog" type="Label" parent="UI/MarginContainer/Panel" unique_id=1308605884]
-layout_mode = 0
-offset_left = 184.0
-offset_top = 41.0
-offset_right = 400.0
-offset_bottom = 95.0
-text = "dsadas"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer" unique_id=162470804]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HBoxContainer/MarginContainer" unique_id=162470804]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/HBoxContainer" unique_id=1101128303]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HBoxContainer/MarginContainer/HBoxContainer" unique_id=1101128303]
 layout_mode = 2
 
-[node name="PlayerLabel" type="Label" parent="UI/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1412933946]
+[node name="PlayerLabel" type="Label" parent="UI/HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1412933946]
 layout_mode = 2
-text = "Biene"
+text = "Player"
 
-[node name="PlayerHPBar" type="ProgressBar" parent="UI/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1290720392]
+[node name="PlayerHPBar" type="ProgressBar" parent="UI/HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1290720392]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 show_percentage = false
 
-[node name="PlayerHP" type="Label" parent="UI/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1302297]
+[node name="PlayerHP" type="Label" parent="UI/HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1302297]
 layout_mode = 2
 text = "30/30"
 
-[node name="MarginContainer3" type="MarginContainer" parent="UI" unique_id=1881146295]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -220.0
-offset_bottom = 176.0
-grow_horizontal = 0
-theme_override_constants/margin_left = 40
+[node name="MarginContainer2" type="MarginContainer" parent="UI/HBoxContainer" unique_id=525248394]
+layout_mode = 2
+theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 40
+theme_override_constants/margin_right = 20
 
-[node name="Panel" type="Panel" parent="UI/MarginContainer3" unique_id=50672219]
+[node name="BattleLog" type="Label" parent="UI/HBoxContainer/MarginContainer2" unique_id=1308605884]
+custom_minimum_size = Vector2(500, 150)
+custom_maximum_size = Vector2(500, 130)
+layout_mode = 2
+text = "dsadas"
+autowrap_mode = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="UI/HBoxContainer" unique_id=1881146295]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 200
+
+[node name="Panel" type="Panel" parent="UI/HBoxContainer/MarginContainer3" unique_id=50672219]
+custom_maximum_size = Vector2(-1, 80)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer3" unique_id=286947839]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HBoxContainer/MarginContainer3" unique_id=286947839]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer3/HBoxContainer" unique_id=267178088]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HBoxContainer/MarginContainer3/HBoxContainer" unique_id=267178088]
 layout_mode = 2
 
-[node name="EnemyLabel" type="Label" parent="UI/MarginContainer3/HBoxContainer/VBoxContainer" unique_id=1301497164]
+[node name="EnemyLabel" type="Label" parent="UI/HBoxContainer/MarginContainer3/HBoxContainer/VBoxContainer" unique_id=1301497164]
 layout_mode = 2
 text = "Enemy"
 
-[node name="EnemyHPBar" type="ProgressBar" parent="UI/MarginContainer3/HBoxContainer/VBoxContainer" unique_id=1385246287]
+[node name="EnemyHPBar" type="ProgressBar" parent="UI/HBoxContainer/MarginContainer3/HBoxContainer/VBoxContainer" unique_id=1385246287]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 show_percentage = false
 
-[node name="EnemyHP" type="Label" parent="UI/MarginContainer3/HBoxContainer/VBoxContainer" unique_id=1075787013]
+[node name="EnemyHP" type="Label" parent="UI/HBoxContainer/MarginContainer3/HBoxContainer/VBoxContainer" unique_id=1075787013]
 layout_mode = 2
 text = "30/30"
 
