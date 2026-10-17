@@ -1,12 +1,14 @@
+class_name GridCharacter
 extends CharacterBody2D
 
-const TILE_SIZE := 32.0  # keep in sync with player.gd
+const TILE_SIZE := 32.0  # keep in sync everywhere
 
 @export var move_speed := 60.0
-@export var wanders := false                  # tick in the Inspector for movers only
-@export var idle_time := Vector2(1.0, 3.0)
+@export var footprint: Vector2i = Vector2i(1, 1)  # cells covered; (2, 2) for big ones
+@export var wanders := false                      # tick in the Inspector for movers only
+@export var idle_time := Vector2(1.0, 3.0)        # min/max seconds between steps
 
-var grid_cell := Vector2i.ZERO      # the single occupied cell
+var grid_cell := Vector2i.ZERO      # anchor = top-left occupied cell
 var target_position := Vector2.ZERO
 var is_moving := false
 var move_direction := Vector2i.ZERO
@@ -18,15 +20,20 @@ var _idle_timer := 1.0
 
 func _ready() -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
-	add_to_group("enemies")
-	add_to_group("interactable")
+	_setup_character()
+
+
+## Subclasses override this instead of _ready().
+func _setup_character() -> void:
+	pass
 
 
 func _physics_process(delta: float) -> void:
 	if not _anchored:
 		_anchored = true
-		# Centered 32x32 sprite: snap to the nearest tile center.
-		grid_cell = Vector2i(((global_position - Vector2.ONE * TILE_SIZE * 0.5) / TILE_SIZE).floor())
+		# Centered footprint-sized sprite: snap the footprint center onto the grid.
+		var top_left := global_position - Vector2(footprint) * TILE_SIZE * 0.5
+		grid_cell = Vector2i((top_left / TILE_SIZE).floor())
 		global_position = cell_position(grid_cell)
 		target_position = global_position
 		_idle_timer = randf_range(idle_time.x, idle_time.y)
@@ -54,7 +61,7 @@ func _physics_process(delta: float) -> void:
 			if collision:
 				var collider := collision.get_collider()
 				if collider is Node and collider.is_in_group("player"):
-					interact(collider)
+					_on_player_collision(collider)
 				global_position = cell_position(grid_cell)
 				target_position = global_position
 				move_direction = Vector2i.ZERO
@@ -80,18 +87,28 @@ func _next_direction(delta: float) -> Vector2i:
 	return dirs.pick_random()
 
 
+## Called when a wandering character walks into the player.
+func _on_player_collision(player: Node) -> void:
+	interact(player)
+
+
 func cell_position(cell: Vector2i) -> Vector2:
-	# Node origin = center of the tile.
-	return (Vector2(cell) + Vector2(0.5, 0.5)) * TILE_SIZE
+	# Node origin = center of the footprint.
+	return (Vector2(cell) + Vector2(footprint) * 0.5) * TILE_SIZE
 
 
 func occupies(cell: Vector2i) -> bool:
-	return cell == grid_cell
+	return cell.x >= grid_cell.x and cell.x < grid_cell.x + footprint.x \
+		and cell.y >= grid_cell.y and cell.y < grid_cell.y + footprint.y
 
 
 func get_occupied_cells() -> Array[Vector2i]:
-	return [grid_cell]
+	var cells: Array[Vector2i] = []
+	for y in footprint.y:
+		for x in footprint.x:
+			cells.append(grid_cell + Vector2i(x, y))
+	return cells
 
 
 func interact(player: Node) -> void:
-	print("%s interacted with %s" % [player.name, name])
+	pass  # overridden by subclasses
