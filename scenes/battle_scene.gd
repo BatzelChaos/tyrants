@@ -7,13 +7,13 @@ signal finished(outcome: int)
 enum Outcome { VICTORY, DEFEAT, FLED }
 
 
-@onready var player_label: Label = $UI/MarginContainer/HBoxContainer/VBoxContainer/PlayerLabel
-@onready var enemy_label: Label = $UI/MarginContainer3/HBoxContainer/VBoxContainer/EnemyLabel
-@onready var enemy_bar: ProgressBar = $UI/MarginContainer3/HBoxContainer/VBoxContainer/EnemyHPBar
-@onready var player_bar: ProgressBar = $UI/MarginContainer/HBoxContainer/VBoxContainer/PlayerHPBar
-@onready var battle_log: Label = $UI/MarginContainer/Panel/BattleLog
-@onready var player_hp_label: Label = $UI/MarginContainer/HBoxContainer/VBoxContainer/PlayerHP
-@onready var enemy_hp_label: Label = $UI/MarginContainer3/HBoxContainer/VBoxContainer/EnemyHP
+@onready var player_label: Label = $UI/HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/PlayerLabel
+@onready var enemy_label: Label = $UI/HBoxContainer/MarginContainer3/HBoxContainer/VBoxContainer/EnemyLabel
+@onready var enemy_bar: ProgressBar = $UI/HBoxContainer/MarginContainer3/HBoxContainer/VBoxContainer/EnemyHPBar
+@onready var player_bar: ProgressBar = $UI/HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/PlayerHPBar
+@onready var battle_log: Label = $UI/HBoxContainer/MarginContainer2/BattleLog
+@onready var player_hp_label: Label = $UI/HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/PlayerHP
+@onready var enemy_hp_label: Label = $UI/HBoxContainer/MarginContainer3/HBoxContainer/VBoxContainer/EnemyHP
 @onready var fight_button: Button = $UI/MarginContainer2/VBoxContainer/HBoxContainer/FightButton
 @onready var talk_button: Button = $UI/MarginContainer2/VBoxContainer/HBoxContainer2/TalkButton
 @onready var items_button: Button = $UI/MarginContainer2/VBoxContainer/HBoxContainer/ItemButton
@@ -50,7 +50,7 @@ func setup(p_enemy: Enemy, p_player: Player) -> void:
 	enemy_max_hp = enemy.max_health
 	enemy_hp = enemy.health
 	_lines.clear()
-	_log("A wild %s appears!" % enemy.display_name)
+	_log("%s approaches!" % enemy.display_name)
 	_refresh()
 	for button in [fight_button, talk_button, items_button, run_button]:
 		button.disabled = false

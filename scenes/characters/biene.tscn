@@ -154,4 +154,4 @@ shape = SubResource("RectangleShape2D_tvbda")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1479387329]
 sprite_frames = SubResource("SpriteFrames_832yc")
-animation = &"idle_down"
+animation = &"walk_down"
