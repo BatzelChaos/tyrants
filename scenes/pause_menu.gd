@@ -1,7 +1,6 @@
 extends Control
 
 @onready var resume_button: Button = $Panel/VBoxContainer/ResumeButton
-@onready var save_button: Button = $Panel/VBoxContainer/SaveButton
 @onready var settings_button: Button = $Panel/VBoxContainer/SettingsButton
 @onready var quit_button: Button = $Panel/VBoxContainer/QuitButton
 
@@ -14,7 +13,6 @@ func _ready() -> void:
 	scale = Vector2(0.4, 0.4)
 
 	resume_button.pressed.connect(_on_resume_pressed)
-	save_button.pressed.connect(_on_save_pressed)
 	settings_button.pressed.connect(_on_settings_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
 	
@@ -51,12 +49,8 @@ func resume_game() -> void:
 func _on_resume_pressed() -> void:
 	resume_game()
 
-
-func _on_save_pressed() -> void:
-	GameManager.save_game()
-
-
 func _on_quit_pressed() -> void:
+	GameManager.save_game()
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/start_screen.tscn")
 

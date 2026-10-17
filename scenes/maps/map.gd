@@ -10,7 +10,7 @@ const TILE_SIZE := 32.0
 # Optional: drop a Marker2D named "SpawnPoint" into this map and the
 # player will enter here instead of the game-level spawn point.
 @onready var spawn_point: Marker2D = get_node_or_null("SpawnPoint") as Marker2D
-
+@onready var respawn_point: Marker2D = get_node_or_null("RespawnPoint") as Marker2D
 
 func _ready() -> void:
 	_spawn_layer(enemy_layer_name, enemy_scenes)
@@ -31,6 +31,14 @@ func _spawn_layer(layer_name: String, scenes: Dictionary[Vector2i, PackedScene])
 			continue
 
 		var character: Node2D = scenes[atlas].instantiate()
+		# Defeated enemies stay gone for the whole game (until a new game).
+		if character is Enemy:
+			var enemy := character as Enemy
+			var spawn_id := "%s|%s|%s" % [scene_file_path, layer_name, cell]
+			if GameManager.is_enemy_defeated(spawn_id):
+				enemy.queue_free()
+				continue
+			enemy.spawn_id = spawn_id
 		var tile_data := layer.get_cell_tile_data(cell)
 
 		# Only touch properties the character script actually has.

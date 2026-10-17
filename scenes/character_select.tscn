@@ -14,11 +14,18 @@ theme = ExtResource("2_bow2h")
 script = ExtResource("1_jgus3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=748589383]
-layout_mode = 0
-offset_left = 192.0
-offset_top = 139.0
-offset_right = 956.0
-offset_bottom = 201.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -382.0
+offset_top = -64.0
+offset_right = 382.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("2_bow2h")
 alignment = 1
 
@@ -29,12 +36,12 @@ alignment = 1
 [node name="kaniel" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1859606682]
 layout_mode = 2
 theme = ExtResource("2_bow2h")
-text = "KANIEL"
+text = "  KANIEL  "
 
 [node name="biene" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1271791186]
 layout_mode = 2
 theme = ExtResource("2_bow2h")
-text = "BIENE"
+text = "  BIENE   "
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=2094970246]
 layout_mode = 2
@@ -43,19 +50,25 @@ alignment = 1
 [node name="avanch" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=1349916338]
 layout_mode = 2
 theme = ExtResource("2_bow2h")
-text = "AVANCH"
+text = "  AVANCH  "
 
 [node name="cro" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=103242380]
 layout_mode = 2
 theme = ExtResource("2_bow2h")
-text = "CRO"
+text = "   CRO    "
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1693259661]
-layout_mode = 0
-offset_left = 484.0
-offset_top = 645.0
-offset_right = 672.0
-offset_bottom = 707.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -94.0
+offset_top = -62.0
+offset_right = 94.0
+grow_horizontal = 2
+grow_vertical = 0
 alignment = 1
 
 [node name="start" type="Button" parent="VBoxContainer2" unique_id=1848698638]
