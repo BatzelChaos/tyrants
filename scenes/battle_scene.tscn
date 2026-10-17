@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://c3pj6sfwyygge"]
+
+[ext_resource type="Theme" uid="uid://buu70asntrspv" path="res://assets/resources/mainscreen.tres" id="1_idkgt"]
+
+[node name="BattleScene" type="Control" unique_id=608689149]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_idkgt")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=158926191]
+layout_mode = 1
+offset_right = 180.0
+offset_bottom = 54.0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=553320368]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1101128303]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1412933946]
+layout_mode = 2
+text = "Biene"
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer" unique_id=1290720392]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+show_percentage = false
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1051090356]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Panel" type="Panel" parent="MarginContainer2" unique_id=1807511079]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2" unique_id=94020807]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer" unique_id=317854344]
+layout_mode = 2
+
+[node name="FightButton" type="Button" parent="MarginContainer2/VBoxContainer/HBoxContainer" unique_id=221261968]
+layout_mode = 2
+text = "Fight"
+
+[node name="ItemButton" type="Button" parent="MarginContainer2/VBoxContainer/HBoxContainer" unique_id=475838478]
+layout_mode = 2
+text = "Items"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer2/VBoxContainer" unique_id=1833761532]
+layout_mode = 2
+
+[node name="RunButton" type="Button" parent="MarginContainer2/VBoxContainer/HBoxContainer2" unique_id=1041747843]
+layout_mode = 2
+text = "Run"
+
+[node name="TalkButton" type="Button" parent="MarginContainer2/VBoxContainer/HBoxContainer2" unique_id=727162156]
+layout_mode = 2
+text = "Talk"

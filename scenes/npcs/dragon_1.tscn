@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cf3urwquvdl33"]
 
 [ext_resource type="Texture2D" uid="uid://cx3oajj6xgs0o" path="res://assets/tilesets/enemy1.png" id="1_ejdbk"]
-[ext_resource type="Script" uid="uid://cmnribmk08lr4" path="res://scenes/npcs/big_enemy.gd" id="1_wtrut"]
+[ext_resource type="Script" uid="uid://djt3av1av3jd3" path="res://enemy.gd" id="1_wtrut"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_blx5w"]
 
@@ -22,6 +22,7 @@ animations = [{
 
 [node name="Dragon1" type="CharacterBody2D" unique_id=630307457]
 script = ExtResource("1_wtrut")
+footprint = Vector2i(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1453565954]
 scale = Vector2(3, 3)
