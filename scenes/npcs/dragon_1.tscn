@@ -20,8 +20,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Dragon1" type="CharacterBody2D" unique_id=630307457]
+[node name="Dragon of Eternal" type="CharacterBody2D" unique_id=630307457]
 script = ExtResource("1_wtrut")
+display_name = "Dragon of Eternal"
 footprint = Vector2i(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1453565954]

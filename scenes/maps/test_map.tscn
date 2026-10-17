@@ -60,3 +60,4 @@ tile_set = SubResource("TileSet_2s55i")
 [node name="NPCs" type="TileMapLayer" parent="." unique_id=1360883823]
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=2127150986]
+position = Vector2(240, 144)

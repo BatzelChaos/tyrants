@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bwigmwscxt4a2"]
 
-[ext_resource type="Script" uid="uid://ccmrgmk1g15rw" path="res://scenes/characters/character_move.gd" id="1_832yc"]
+[ext_resource type="Script" uid="uid://ccmrgmk1g15rw" path="res://scenes/characters/player.gd" id="1_832yc"]
 [ext_resource type="Texture2D" uid="uid://d4assbc3jy4o0" path="res://assets/tilesets/biene1.png" id="1_pm82w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tvbda"]

@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 const TILE_SIZE := 32.0
@@ -142,6 +143,7 @@ func get_save_data() -> Dictionary:
 		"grid_cell_y": grid_cell.y,
 		"last_direction_x": last_direction.x,
 		"last_direction_y": last_direction.y,
+		"defeated_enemies": GameManager.get_defeated_save_data(),
 	}
 
 
@@ -187,3 +189,13 @@ func _try_bump_interact(collision: KinematicCollision2D) -> void:
 	if target is Node and target.is_in_group("interactable") and target.has_method("interact"):
 		_bump_armed = false
 		target.interact(self)
+
+func teleport_to(pos: Vector2) -> void:
+	global_position = pos
+	grid_origin = pos
+	grid_cell = Vector2i.ZERO
+	target_position = pos
+	move_direction = Vector2i.ZERO
+	is_moving = false
+	velocity = Vector2.ZERO
+	stop_walk_animation()

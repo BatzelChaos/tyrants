@@ -2,8 +2,18 @@ extends Control
 
 @onready var start_button: Button = $VBoxContainer2/start
 
+@onready var kaniel_button: Button = $VBoxContainer/HBoxContainer/kaniel
+@onready var biene_button: Button = $VBoxContainer/HBoxContainer/biene
+@onready var avanch_button: Button = $VBoxContainer/HBoxContainer2/avanch
+@onready var cro_button: Button = $VBoxContainer/HBoxContainer2/cro
+
+var _character_group := ButtonGroup.new()
+
 
 func _ready() -> void:
+	for button in [kaniel_button, biene_button, avanch_button, cro_button]:
+		button.toggle_mode = true
+		button.button_group = _character_group
 	start_button.disabled = true
 
 

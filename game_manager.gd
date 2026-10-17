@@ -2,6 +2,10 @@ extends Node
 
 const SAVE_PATH := "user://savegame.json"
 
+const RESPAWN_MAP_PATH := "res://maps/town.tscn"  # ← change to your respawn map
+
+var defeated_enemies := {}  # spawn_id -> true; used as a set
+
 const CHARACTER_PATHS := {
 	"kaniel": "res://scenes/characters/kaniel.tscn",
 	"biene": "res://scenes/characters/biene.tscn",
@@ -51,7 +55,8 @@ func save_game() -> void:
 	var data: Dictionary = player.get_save_data()
 	data["character"] = selected_character_id
 	data["map"] = current_map_path
-
+	data["defeated_enemies"] = get_defeated_save_data()
+	
 	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file == null:
 		push_error("Could not open save file: %s" % error_string(FileAccess.get_open_error()))
@@ -88,6 +93,9 @@ func load_game() -> bool:
 
 	selected_character_id = character_id
 	current_map_path = str(data.get("map", current_map_path))
+	if data.has("defeated_enemies"):
+		load_defeated_save_data(data["defeated_enemies"])
+	
 	pending_save_data = data
 	return true
 
@@ -95,3 +103,22 @@ func load_game() -> bool:
 func change_map(path: String) -> void:
 	current_map_path = path
 	get_tree().change_scene_to_file(path)
+
+func defeat_enemy(spawn_id: String) -> void:
+	defeated_enemies[spawn_id] = true
+
+
+func is_enemy_defeated(spawn_id: String) -> bool:
+	return defeated_enemies.has(spawn_id)
+
+
+func reset_defeated_enemies() -> void:
+	defeated_enemies.clear()  # call this from start_game() for a fresh game
+	
+func get_defeated_save_data() -> Array:
+	return defeated_enemies.keys()
+
+func load_defeated_save_data(ids: Array) -> void:
+	defeated_enemies.clear()
+	for id in ids:
+		defeated_enemies[String(id)] = true
